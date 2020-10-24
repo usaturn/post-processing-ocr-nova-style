@@ -1,7 +1,7 @@
 #!/bin/gawk
-# awk --re-interval -f maeshori.awk
+# awk --re-interval -f after.awk
 
-!/^-------.+/{
+{
     gsub(/;/, ":", $1)
     converted=gensub(/(技能|上限|タイミング|対象|射程|目標値|対決|解説)(1|二|ニ)/, "\\1:", "g", $1)
     converted=gensub(/(上限|タイミング|対象|射程|目標値|対決):(ー|一)/, "\\1:-", "g", converted)
@@ -40,8 +40,9 @@
     gsub(/りア/, "リア", converted)
     gsub(/ィァ/, "ィア", converted)
     gsub(/ェキス/, "エキス", converted)
-    gsub(/÷\[/, "÷[", converted)
+    gsub(/÷\[/, "+[", converted)
     gsub(/i回/, "1回", converted)
+    gsub(/I回/, "1回", converted)
     gsub(/\+I/, "+1", converted)
     gsub(/\+i/, "+1", converted)
     gsub(/1J/, "1]", converted)
@@ -56,8 +57,6 @@
     gsub(/一1/, "-1", converted)
     gsub(/一2/, "-2", converted)
     gsub(/一3/, "-3", converted)
-
-    gsub(/^技能:/, "@\n技能:", converted)
 
     print converted
 }
