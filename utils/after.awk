@@ -3,7 +3,7 @@
 
 {
     gsub(/;/, ":", $1)
-    converted=gensub(/(技能|上限|タイミング|対象|射程|目標値|対決|解説|社会|芸術|製作|BS|電制|フォルム|タイプ|隠)(l|1|二|ニ)/, "\\1:", "g", $1)
+    converted=gensub(/(技能|上限|タイミング|対象|射程|目標値|対決|解説|社会|芸術|製作|BS|電制|フォルム|タイプ|隠|部位)(l|1|二|ニ)/, "\\1:", "g", $1)
     converted=gensub(/(上限|タイミング|対象|射程|目標値|対決|電制|隠):(ー|一)/, "\\1:-", "g", converted)
     converted=gensub(/(\[[^\[\]]+)ユ/, "\\1]", "g", converted)
     converted=gensub(/(ー|一)([0-9])/, "-\\1", "g", converted)
@@ -28,10 +28,13 @@
     gsub(/技能:宣./, "技能:宣言", converted)
     gsub(/文寸/, "対", converted)
     gsub(/身寸/, "射", converted)
+    gsub(/\{言用/, "信用", converted)
+    gsub(/1言用/, "信用", converted)
     gsub(/●/, "・", converted)
     gsub(/ニシァ/, "ニシア", converted)
     gsub(/ス一/, "スー", converted)
     gsub(/リ一/, "リー", converted)
+    gsub(/り一/, "リー", converted)
     gsub(/一ド/, "ード", converted)
     gsub(/一ト/, "ート", converted)
     gsub(/フエース/, "フェース", converted)
